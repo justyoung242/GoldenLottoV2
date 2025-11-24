@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalyst Pro - Checkout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              slate: {
+                850: '#172033',
+                900: '#0f172a',
+                950: '#020617',
+              },
+              emerald: {
+                450: '#10b981',
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+          },
+        },
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #020617; color: #e2e8f0; font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6 bg-slate-950">
+
+    <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Product Details -->
+        <div class="flex flex-col justify-center space-y-6">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center border border-emerald-500/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 9h.01"/><path d="M10 15h.01"/><path d="M9 9h.01"/><path d="M14 15h.01"/></svg>
+                </div>
+                <div>
+                    <h1 class="font-bold text-2xl text-white">Catalyst Pro</h1>
+                    <p class="text-emerald-400 font-mono text-sm">AI-Powered Lotto Engine</p>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+                    <span class="text-slate-400">Subscription</span>
+                    <span class="text-white font-semibold">Monthly Access</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-400">Price</span>
+                    <span class="text-3xl font-bold text-white">$29.99<span class="text-sm text-slate-500 font-normal">/mo</span></span>
+                </div>
+                
+                <ul class="space-y-3 pt-4">
+                    <li class="flex items-center gap-3 text-sm text-slate-300">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Real-time Pick3/Pick4 Alerts
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-300">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Advanced Pattern Analysis
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-slate-300">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Unlimited Strategy Backtesting
+                    </li>
+                </ul>
+            </div>
+            
+            <a href="index.html" class="text-slate-500 hover:text-slate-300 text-sm flex items-center gap-2 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                Back to Dashboard
+            </a>
+        </div>
+
+        <!-- Checkout Form -->
+        <div class="bg-white rounded-2xl p-8 shadow-xl flex flex-col justify-center">
+            <h2 class="text-slate-900 font-bold text-xl mb-6">Secure Checkout</h2>
+            
+            <!-- PayPal Smart Buttons -->
+            <div id="paypal-button-container"></div>
+            
+            <p class="text-xs text-slate-400 text-center mt-6">
+                By continuing, you agree to our Terms of Service and Privacy Policy. Secure payment processing by PayPal.
+            </p>
+        </div>
+    </div>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD&intent=subscription&vault=true"></script>
+    <script>
+        paypal.Buttons({
+            style: {
+                shape: 'rect',
+                color: 'black',
+                layout: 'vertical',
+                label: 'subscribe'
+            },
+            createSubscription: function(data, actions) {
+                return actions.subscription.create({
+                    'plan_id': 'P-TEST_PLAN_ID' // Replace with actual Plan ID from PayPal Developer Dashboard
+                });
+            },
+            onApprove: function(data, actions) {
+                alert('Subscription successful! Subscription ID: ' + data.subscriptionID);
+                // Redirect to dashboard or success page
+                window.location.href = 'index.html?status=subscribed';
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>
