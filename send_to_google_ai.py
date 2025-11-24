@@ -73,7 +73,7 @@ def send_to_google_studio(data):
 
     url = f"{GOOGLE_AI_URL}?key={GOOGLE_API_KEY}"
     response = requests.post(url, headers=headers, json=payload)
-AIzaSyAK8aWK4jSwqjUEgwWmwPtOjrLo_MnX89E
+
     print("Google AI Response:")
     print(response.text)
 
