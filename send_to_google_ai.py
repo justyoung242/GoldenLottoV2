@@ -8,8 +8,8 @@ from datetime import datetime
 # Configuration: Google AI Studio Endpoint + API Key
 # ------------------------------------------------------
 
-GOOGLE_AI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent"
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")  # export GOOGLE_API_KEY="xxxxx"
+# GOOGLE_AI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent"
+# GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")  # export GOOGLE_API_KEY="xxxxx"
 
 # ------------------------------------------------------
 # Helper: Run Your Existing Analyzer
@@ -71,11 +71,11 @@ def send_to_google_studio(data):
         ]
     }
 
-    url = f"{GOOGLE_AI_URL}?key={GOOGLE_API_KEY}"
-    response = requests.post(url, headers=headers, json=payload)
+    # url = f"{GOOGLE_AI_URL}?key={GOOGLE_API_KEY}"
+    # response = requests.post(url, headers=headers, json=payload)
 
     print("Google AI Response:")
-    print(response.text)
+    # print(response.text)
 
 # ------------------------------------------------------
 # Main
